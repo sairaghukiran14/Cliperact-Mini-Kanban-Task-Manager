@@ -36,7 +36,7 @@ function pingApi() {
 
             console.log(`[${new Date().toISOString()}] ✅ Status Code: ${res.statusCode}`);
             console.log(`[${new Date().toISOString()}] ⏱️  Time taken: ${timeTakenMs} ms`);
-            
+
             // Print out a preview of the response (limiting to 200 chars to avoid console spam)
             const responsePreview = data.length > 200 ? data.substring(0, 200) + '... (truncated)' : data;
             console.log(`[${new Date().toISOString()}] 📦 Response: ${responsePreview}`);
