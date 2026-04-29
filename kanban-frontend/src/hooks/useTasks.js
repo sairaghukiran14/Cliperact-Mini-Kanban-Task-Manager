@@ -27,7 +27,7 @@ export function useTasks() {
     }
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}/tasks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: title.trim() })
@@ -52,7 +52,7 @@ export function useTasks() {
     setTasks(tasks.map(t => t.id === taskId ? { ...t, status: newStatus } : t));
 
     try {
-      const response = await fetch(`${API_URL}/${taskId}`, {
+      const response = await fetch(`${API_URL}/tasks/${taskId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -85,7 +85,7 @@ export function useTasks() {
     setTasks(tasks.filter(t => t.id !== taskId));
 
     try {
-      const response = await fetch(`${API_URL}/${taskId}`, {
+      const response = await fetch(`${API_URL}/tasks/${taskId}`, {
         method: 'DELETE'
       });
 
