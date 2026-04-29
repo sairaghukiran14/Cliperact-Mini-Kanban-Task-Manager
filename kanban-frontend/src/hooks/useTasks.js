@@ -6,19 +6,19 @@ export function useTasks() {
   const API_URL = process.env.REACT_APP_API_URL || '';
 
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Failed to fetch tasks');
+        const data = await response.json();
+        setTasks(data);
+      } catch (err) {
+        toast.error('Could not connect to the backend server');
+      }
+    };
 
-  const fetchTasks = async () => {
-    try {
-      const response = await fetch(API_URL);
-      if (!response.ok) throw new Error('Failed to fetch tasks');
-      const data = await response.json();
-      setTasks(data);
-    } catch (err) {
-      toast.error('Could not connect to the backend server');
-    }
-  };
+    fetchTasks();
+  }, [API_URL]);
 
   const addTask = async (title) => {
     if (!title.trim()) {
