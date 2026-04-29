@@ -5,14 +5,25 @@ import TaskColumn from './components/TaskColumn';
 import './TaskManager.css';
 
 export default function TaskManager() {
-  const { tasks, addTask, updateTaskStatus, toggleTaskStatus, deleteTask } = useTasks();
+  const { tasks, loading, error, addTask, updateTaskStatus, toggleTaskStatus, deleteTask } = useTasks();
 
   const todoTasks = tasks.filter(t => t.status === 'todo');
   const doneTasks = tasks.filter(t => t.status === 'done');
 
+  if (loading) {
+    return (
+      <div className="task-manager">
+        <h1>Task Manager</h1>
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="task-manager">
       <h1>Task Manager</h1>
+
+      {error && <div className="error-message">{error}</div>}
 
       <TaskForm onAdd={addTask} />
 

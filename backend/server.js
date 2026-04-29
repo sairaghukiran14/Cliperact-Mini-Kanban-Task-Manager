@@ -8,6 +8,27 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const start = Date.now();
+  console.log(`[${new Date().toISOString()}] REQ: ${req.method} ${req.originalUrl}`);
+  if (req.body && Object.keys(req.body).length > 0) {
+    console.log('REQ BODY:', req.body);
+  }
+
+  const originalJson = res.json;
+  res.json = function (body) {
+    const duration = Date.now() - start;
+    console.log(`[${new Date().toISOString()}] RES: ${res.statusCode} (${duration}ms)`);
+    if (res.statusCode >= 400) {
+      console.error('RES ERROR BODY:', body);
+    } else {
+      console.log('RES BODY:', body);
+    }
+    return originalJson.call(this, body);
+  };
+  next();
+});
+
 let tasks = [
   { id: 1001, title: 'Setup project structure', status: 'done' },
   { id: 1002, title: 'Design database schema', status: 'done' },
@@ -64,6 +85,12 @@ app.delete('/tasks/:id', (req, res) => {
   res.json(deletedTask[0]);
 });
 
+
+app.use((err, req, res, next) => {
+  console.error(`[${new Date().toISOString()}] UNHANDLED ERROR:`, err.message);
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
 
 const PORT = process.env.PORT || 5555;
 app.listen(PORT, () => {

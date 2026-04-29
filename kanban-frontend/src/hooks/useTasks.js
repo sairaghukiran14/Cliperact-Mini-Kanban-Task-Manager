@@ -3,17 +3,24 @@ import { toast } from 'sonner';
 
 export function useTasks() {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const API_URL = process.env.REACT_APP_API_URL || '';
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
+        setLoading(true);
+        setError(null);
         const response = await fetch(API_URL + "/tasks");
         if (!response.ok) throw new Error('Failed to fetch tasks');
         const data = await response.json();
         setTasks(data);
       } catch (err) {
+        setError(err.message || 'Could not connect to the backend server');
         toast.error('Could not connect to the backend server');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -104,6 +111,8 @@ export function useTasks() {
 
   return {
     tasks,
+    loading,
+    error,
     addTask,
     updateTaskStatus,
     toggleTaskStatus,
