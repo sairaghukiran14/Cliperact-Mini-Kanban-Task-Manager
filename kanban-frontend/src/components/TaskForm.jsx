@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
+import { toast } from 'sonner';
 
 export default function TaskForm({ onAdd }) {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!newTaskTitle.trim()) return;
-    onAdd(newTaskTitle);
+    
+    const trimmedTitle = newTaskTitle.trim();
+    
+    if (!trimmedTitle) {
+      toast.error('Task title cannot be empty');
+      return;
+    }
+    
+    if (trimmedTitle.length < 3) {
+      toast.error('Task title must be at least 3 characters long');
+      return;
+    }
+    
+    if (trimmedTitle.length > 100) {
+      toast.error('Task title cannot exceed 100 characters');
+      return;
+    }
+
+    onAdd(trimmedTitle);
     setNewTaskTitle('');
   };
 
