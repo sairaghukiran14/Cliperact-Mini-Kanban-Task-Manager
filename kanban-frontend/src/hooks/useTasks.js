@@ -47,7 +47,7 @@ export function useTasks() {
     const taskToUpdate = tasks.find(t => t.id === taskId);
     if (!taskToUpdate || taskToUpdate.status === newStatus) return;
 
-    // Optimistic update for snappy UI
+
     const originalTasks = [...tasks];
     setTasks(tasks.map(t => t.id === taskId ? { ...t, status: newStatus } : t));
 
@@ -66,7 +66,7 @@ export function useTasks() {
         toast.info('Task moved to To Do');
       }
     } catch (err) {
-      // Revert optimistic update
+
       setTasks(originalTasks);
       toast.error('Failed to update task');
     }
@@ -80,7 +80,7 @@ export function useTasks() {
   };
 
   const deleteTask = async (taskId) => {
-    // Optimistic update
+
     const originalTasks = [...tasks];
     setTasks(tasks.filter(t => t.id !== taskId));
 
@@ -96,7 +96,7 @@ export function useTasks() {
         style: { background: '#fef2f2', color: '#ef4444', border: '1px solid #fca5a5' }
       });
     } catch (err) {
-      // Revert on failure
+
       setTasks(originalTasks);
       toast.error('Failed to delete task');
     }

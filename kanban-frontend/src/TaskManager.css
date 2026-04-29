@@ -2,8 +2,8 @@
 
 body {
   margin: 0;
-  background: #f0f2f5; /* Light grey background */
-  color: #374151; /* Dark grey text */
+  background: #f0f2f5;
+  color: #374151;
   font-family: 'Outfit', sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -21,14 +21,14 @@ h1 {
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 3.5rem;
-  color: #1f2937; /* Deep grey */
+  color: #1f2937;
   animation: fadeInDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .error-message {
   background: #fef2f2;
   border: 1px solid #fca5a5;
-  color: #ef4444; /* Red */
+  color: #ef4444;
   padding: 1rem;
   border-radius: 12px;
   margin-bottom: 2rem;
@@ -41,7 +41,7 @@ h1 {
   display: flex;
   gap: 1rem;
   margin-bottom: 4rem;
-  background: #ffffff; /* White */
+  background: #ffffff;
   padding: 0.75rem;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
@@ -70,7 +70,7 @@ h1 {
 
 .task-input button {
   padding: 0 2.5rem;
-  background: #2563eb; /* Blue */
+  background: #2563eb;
   color: white;
   border: none;
   border-radius: 8px;
@@ -82,7 +82,7 @@ h1 {
 }
 
 .task-input button:hover {
-  background: #1d4ed8; /* Darker blue */
+  background: #1d4ed8;
   transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
 }
@@ -99,7 +99,7 @@ h1 {
 }
 
 .column {
-  background: #e5e7eb; /* Grey column background */
+  background: #e5e7eb;
   border-radius: 16px;
   padding: 2rem;
   min-height: 500px;
@@ -117,7 +117,7 @@ h1 {
 }
 
 .badge {
-  background: #2563eb; /* Blue */
+  background: #2563eb;
   color: white;
   padding: 0.25rem 0.8rem;
   border-radius: 20px;
@@ -140,7 +140,7 @@ h1 {
 }
 
 .task-card {
-  background: #ffffff; /* White */
+  background: #ffffff;
   border: 1px solid #d1d5db;
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
@@ -164,7 +164,7 @@ h1 {
 }
 
 .task-card.done {
-  background: #f9fafb; /* Very light grey */
+  background: #f9fafb;
   border-color: transparent;
   box-shadow: none;
 }
@@ -193,7 +193,7 @@ h1 {
 }
 
 .task-checkbox:checked {
-  background: #16a34a; /* Green */
+  background: #16a34a;
   border-color: #16a34a;
 }
 
@@ -213,7 +213,7 @@ h1 {
   font-size: 1.15rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #1f2937; /* Dark grey */
+  color: #1f2937;
   word-break: break-word;
 }
 
@@ -233,7 +233,7 @@ h1 {
 
 .delete-btn:hover {
   background: #fee2e2;
-  color: #ef4444; /* Red hover */
+  color: #ef4444;
 }
 
 @keyframes fadeInDown {
